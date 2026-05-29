@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroTech - Solutions Électriques Innovantes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bleu-fonce: #0a1628;
+            --bleu-marine: #1a3a5c;
+            --bleu-clair: #3d7ab8;
+            --bleu-electric: #4a90d9;
+            --orange: #f5e400;
+            --orange-sombre: #fc8f00;
+            --jaune: #ffd93d;
+            --blanc: #ffffff;
+            --gris-clair: #f5f7fa;
+            --gris: #6b7c93;
+            --gris-texte: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--gris-texte);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 22, 40, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gris-clair), var(--gris));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blanc);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        .logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--blanc);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--blanc);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .nav-cta {
+            background: var(--orange);
+            color: var(--bleu-fonce);
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-cta:hover {
+            background: var(--jaune);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(245, 166, 35, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--bleu-fonce) 0%, var(--bleu-marine) 100%);
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(74, 144, 217, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(245, 166, 35, 0.2);
+            border: 1px solid var(--orange);
+            border-radius: 50px;
+            color: var(--orange);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.2rem;
+            color: var(--blanc);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero h1 span {
+            color: var(--orange);
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: var(--bleu-fonce);
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--jaune);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(245, 166, 35, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--blanc);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--blanc);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--blanc);
+            color: var(--bleu-fonce);
+        }
+
+        /* 3D Model Container */
+        .hero-3d {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            height: 500px;
+            z-index: 1;
+        }
+
+        .model-placeholder {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .model-placeholder svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--bleu-fonce);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--gris);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--gris-clair);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--blanc);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(74, 144, 217, 0.15);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--bleu-marine), var(--bleu-clair));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+
+        .service-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bleu-marine), var(--bleu-clair));
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .service-image-placeholder svg {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 0.5rem;
+            opacity: 0.6;
+        }
+
+        .service-content {
+            padding: 1.5rem;
+        }
+
+        .service-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: var(--bleu-fonce);
+            margin-bottom: 0.8rem;
+        }
+
+        .service-content p {
+            color: var(--gris);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .service-link {
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .service-link:hover {
+            gap: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--blanc);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-text h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            color: var(--bleu-fonce);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--gris);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--gris-clair);
+            border-radius: 12px;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--orange);
+            font-weight: 700;
+        }
+
+        .stat-label {
+            color: var(--gris);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .about-image-box {
+            width: 100%;
+            height: 350px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.3;
+        }
+
+        .floating-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--orange);
+            color: var(--bleu-fonce);
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(245, 166, 35, 0.3);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .floating-badge span {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .floating-badge small {
+            font-size: 0.85rem;
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(135deg, var(--bleu-fonce), var(--bleu-marine));
+            color: var(--blanc);
+        }
+
+        .features .section-header h2 {
+            color: var(--blanc);
+        }
+
+        .features .section-header p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--orange);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--orange), var(--jaune));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .feature-icon svg {
+            width: 35px;
+            height: 35px;
+            color: var(--bleu-fonce);
+        }
+
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--gris-clair);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--bleu-fonce);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            color: var(--gris);
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--bleu-marine);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--orange);
+        }
+
+        .contact-item-text h4 {
+            color: var(--bleu-fonce);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item-text p {
+            color: var(--gris);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .contact-form {
+            background: var(--blanc);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--bleu-fonce);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--gris-clair);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--orange);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--orange);
+            color: var(--bleu-fonce);
+            padding: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--jaune);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 166, 35, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bleu-fonce);
+            color: var(--blanc);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--orange);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--orange);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blanc);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--orange);
+            color: var(--bleu-fonce);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--blanc);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .animation-container {
+            width: 500px;
+            margin: auto;
+        }
+
+        .animation-container img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-3d {
+                display: none;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            section {
+                padding: 60px 5%;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+/* Section Modèle 3D */
+.model3d-section {
+    background: linear-gradient(135deg, var(--bleu-fonce), var(--bleu-marine));
+    padding: 100px 5%;
+    text-align: center;
+}
+
+.model3d-section .section-header h2 {
+    color: var(--blanc);
+}
+
+.model3d-section .section-header p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.model3d-wrapper {
+    position: relative;
+    display: inline-block;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 2px solid rgba(74, 144, 217, 0.4);
+    box-shadow: 0 0 60px rgba(74, 144, 217, 0.2);
+}
+
+.sketchfab-embed-wrapper iframe {
+    display: block;
+    width: 600px;
+    height: 500px;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .sketchfab-embed-wrapper iframe {
+        width: 340px;
+        height: 300px;
+    }
+}
+
+    </style>
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <div class="logo-placeholder">
+                <img src="assets/logo.png" alt="Logo ElectroTech">
+            </div>
+            <span class="logo-text">ElectroTech</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#a-propos">À Propos</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-cta">Devis Gratuit</button>
+        <button class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="hero-content">
+            <span class="hero-badge">Solutions Électriques Innovantes</span>
+            <h1>L'excellence <span>électrique</span> au service de vos projets</h1>
+            <p>Des solutions sur mesure pour vos installations électriques, automatismes et projets de construction. Plus de 15 ans d'expertise à votre service.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">
+                    Demander un devis
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#services" class="btn-secondary">Nos services</a>
+            </div>
+        </div>
+
+        <div class="hero-3d">
+        <div class="animation-container">
+            <img id="animation" src="frames/0001.png" alt="animation">
+         </div>
+        
+        </div>
+
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header fade-in">
+            <h2>Nos Services</h2>
+            <p>Des solutions complètes pour tous vos besoins en électricité, de la conception à la réalisation.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-image">
+                    <div class="service-image-placeholder">
+                        <img src="assets/villa-aut.jfif" alt="Automatisation Villa">
+                    </div>
+                </div>
+                <div class="service-content">
+                    <h3>Automatisation Villa</h3>
+                    <p>Contrôlez votre maison inteligemment avec nos systèmes domotiques avancees.</p>
+                    <a href="#" class="service-link">
+                        En savoir plus
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-image">
+                    <div class="service-image-placeholder">
+                        <img src="assets/ind.jfif" alt="">
+                    </div>
+                </div>
+                <div class="service-content">
+                    <h3>Installation Industrielle</h3>
+                    <p>Solutions electriques pour environnements industriels complexes et exigences elevees.</p>
+                    <a href="#" class="service-link">
+                        En savoir plus
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-image">
+                    <div class="service-image-placeholder">
+                        <img src="assets/brid.jfif" alt="">
+                    </div>
+                </div>
+                <div class="service-content">
+                    <h3>Renovation Electrique</h3>
+                    <p>Modernisez vos installations avec des solutions securisees et performantes.</p>
+                    <a href="#" class="service-link">
+                        En savoir plus
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-image">
+                    <div class="service-image-placeholder">
+                        <img src="assets/solar.jfif" alt="Panneaux Solaires">
+                    </div>
+                </div>
+                <div class="service-content">
+                    <h3>Panneaux Solaires</h3>
+                    <p>Installez des panneaux solaires et produisez votre propre energie renouvelable.</p>
+                    <a href="#" class="service-link">
+                        En savoir plus
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="a-propos">
+        <div class="about-content">
+            <div class="about-text fade-in">
+                <h2>L'excellence comme standard</h2>
+                <p>Depuis plus de 15 ans, notre entreprise familiale s'engage a fournir des prestations electriques de la plus haute qualite. Notre equipe d'experts-certified intervient aussi bien pour les particuliers que pour les professionnels.</p>
+                <p>Nous combinons savoir-faire traditionnel et technologies de pointe pour vous offrir des solutions durables et performantes. Chaque projet est unique, et nous mettons tout en oeuvre pour depasser vos attentes.</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Années d'expérience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Projets réalises</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Clients satisfaits</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual fade-in">
+                <div class="about-image-box">
+                    <img src="assets/im2.jfif" alt="">
+                </div>
+                <div class="floating-badge">
+                    <span>98%</span>
+                    <small>Satisfaction client</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-header fade-in">
+            <h2>Pourquoi nous choisir ?</h2>
+            <p>Des valeurs qui font la difference et un engagement constant envers la qualite.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <img src="assets/certif.png" alt="verif">
+                </div>
+                <h3>Certifications</h3>
+                <p>Equipe certifiee et formee aux normes de securite les plus exigeantes du marche.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <img src="assets/prise.png" alt="prise">
+                </div>
+                <h3>Réactivité</h3>
+                <p>Interventions rapides et devis gratuits sous 24h pour tous vos projets.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <img src="assets/lamp.png" alt="lamp">
+                </div>
+                <h3>Garantie</h3>
+                <p>Garantie 10 ans sur toutes nos installations et pieces detachees.</p>
+            </div>
+        </div>
+    </section>
+
+
+<!-- Section Modèle 3D Interactif -->
+<section class="model3d-section" id="modele3d">
+    <div class="section-header fade-in">
+        <h2>Modèle 3D Interactif</h2>
+        <p>Explorez notre équipement électrique en 3D — faites glisser pour pivoter.</p>
+    </div>
+    <div class="model3d-wrapper fade-in">
+        <div class="sketchfab-embed-wrapper">
+            <iframe
+                title="Electric Box"
+                src="https://sketchfab.com/models/fe0c923107b545dfac7e65062701feef/embed?autostart=1&ui_theme=dark&ui_infos=0&ui_watermark_link=0"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-header fade-in">
+            <h2>Contactez-nous</h2>
+            <p>Demandez votre devis gratuit ou posez-nous vos questions.</p>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info fade-in">
+                <h2>Parlons de votre projet</h2>
+                <p>Notre equipe est a votre disposition pour vous accompagner dans tous vos projets electriques. N'hesitez pas a nous contacter !</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <h4>Adresse</h4>
+                            <p>123 Rue de l'Electricite</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <h4>Telephone</h4>
+                            <p>+216 12345678</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item-text">
+                            <h4>Email</h4>
+                            <p>projetDesign@elec-tech.fr</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form fade-in">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Nom complet</label>
+                        <input type="text" id="name" name="name" placeholder="Votre nom">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="votre@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telephone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="06 12 34 56 78">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Decrivez votre projet..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>ElectroTech</h3>
+                <p>Votre partenaire de confiance pour tous vos projets electriques. Qualite,fiabilite et innovation au service de vos installations.</p> <br>
+                <a href="https://www.figma.com/design/RjkdnnjhBpZxZBmdt5We3c/Flux---Figma-Build-Tutorial--Starter---Community-?node-id=0-1&p=f&t=voaMrButPIfwyf3h-0">Voir la maquette Figma</a>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#a-propos">A Propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Automatisation</a></li>
+                    <li><a href="#">Industrie</a></li>
+                    <li><a href="#">Renovation</a></li>
+                    <li><a href="#">Solaire</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#">+216 12345678</a></li>
+                    <li><a href="#">projetDesign@elec-tech.fr</a></li>
+                    <li><a href="#">123 Rue de l'Electricite</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>2026 ElectroTech. Tous droits reserves.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="18" cy="6" r="1"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 2a2 2 0 110 4 2 2 0 010-4z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission (example)
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Merci pour votre message ! Nous vous contacterons sous 24h.');
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+     
+    </script>
+<script src="script.js"></script>
+
+
+
+
+</body>
+</html>
